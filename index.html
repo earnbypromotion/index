@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adult Hub - Exclusive Premium Videos</title>
+    
+    <!-- ADSTERRA POPUNDER / HEAD SCRIPT PLACEHOLDER -->
+    <!-- Paste your Adsterra Popunder / Social Bar Script Here -->
+    <!-- <script type='text/javascript' src='//your-adsterra-popunder-url.js'></script> -->
+
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --card-bg: #1b1b1b;
+            --accent-color: #ff9900; /* PornHub Style Orange */
+            --text-color: #ffffff;
+            --text-muted: #aaaaaa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header Navigation */
+        header {
+            width: 100%;
+            background-color: #000000;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #222;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-box {
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 4px;
+            font-weight: 800;
+        }
+
+        .age-badge {
+            background-color: #e50914;
+            color: white;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        /* Container Layout */
+        .main-container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Ad Banner Styles */
+        .ad-spot {
+            width: 100%;
+            background-color: #151515;
+            border: 1px dashed #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90px;
+            color: #555;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        /* Video Player Box */
+        .video-card {
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 1px solid #282828;
+        }
+
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+            cursor: pointer;
+        }
+
+        .thumbnail-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Play Button Overlay */
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .thumbnail-container:hover .play-overlay {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.6);
+            transition: transform 0.2s ease;
+        }
+
+        .play-btn::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 12px 0 12px 22px;
+            border-color: transparent transparent transparent #000000;
+            margin-left: 4px;
+        }
+
+        .thumbnail-container:hover .play-btn {
+            transform: scale(1.1);
+        }
+
+        /* Video Info */
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .video-stats {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 15px;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent-color);
+            color: #000;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 15px;
+            transition: background 0.2s ease;
+            box-shadow: 0 4px 10px rgba(255, 153, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #e68a00;
+        }
+
+        /* Disclaimer Footer */
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            width: 100%;
+            border-top: 1px solid #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <a href="#" class="logo">
+            Adult<span class="logo-box">Hub</span>
+        </a>
+        <span class="age-badge">18+ ONLY</span>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+
+        <!-- ADSTERRA HIGH CPM TOP BANNER (728x90 or Native) -->
+        <div class="ad-spot">
+            <!-- PASTE YOUR ADSTERRA 728x90 / 300x250 BANNER CODE HERE -->
+            <span>Adsterra High CPM Banner Placeholder (728x90 / 468x60)</span>
+        </div>
+
+        <!-- Fake Video Player Card -->
+        <div class="video-card">
+            <div class="thumbnail-container" onclick="handleAdClick()">
+                
+                <!-- FAKE VIDEO THUMBNAIL IMAGE -->
+                <!-- Replace 'https://via.placeholder.com/800x450' with your thumbnail image URL -->
+                <img src="https://via.placeholder.com/800x450/1c1c1c/ff9900?text=Click+To+Play+Video" alt="Video Thumbnail" class="thumbnail-img">
+                
+                <div class="play-overlay">
+                    <div class="play-btn"></div>
+                </div>
+            </div>
+
+            <div class="video-info">
+                <h1 class="video-title">🔥 Exclusive HD Video - Watch Full Video Online</h1>
+                <div class="video-stats">
+                    <span>👁️ 1.2M Views</span>
+                    <span>👍 98% Likes</span>
+                    <span>⏱️ 24:15 Min</span>
+                </div>
+
+                <!-- Direct Link CTA Button -->
+                <a href="YOUR_ADSTERRA_DIRECT_LINK_HERE" class="cta-button" onclick="handleAdClick()">
+                    ▶ WATCH FULL VIDEO IN HD
+                </a>
+            </div>
+        </div>
+
+        <!-- ADSTERRA MIDDLE BANNER (300x250 / Native Ads) -->
+        <div class="ad-spot" style="min-height: 250px;">
+            <!-- PASTE YOUR ADSTERRA 300x250 / NATIVE AD CODE HERE -->
+            <span>Adsterra High CPM Native / 300x250 Banner Placeholder</span>
+        </div>
+
+        <!-- ADSTERRA BOTTOM BANNER -->
+        <div class="ad-spot">
+            <!-- PASTE YOUR ADSTERRA BANNER CODE HERE -->
+            <span>Adsterra Bottom Banner Placeholder</span>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Adult Hub. All rights reserved.</p>
+        <p>This website contains age-restricted material. You must be at least 18 years old to enter.</p>
+    </footer>
+
+    <!-- JavaScript for Ad Handling & Direct Links -->
+    <script>
+        // Adsterra Direct Link Implementation
+        const adsterraDirectLink = "YOUR_ADSTERRA_DIRECT_LINK_HERE"; // Insert your Adsterra Direct Link URL here
+
+        function handleAdClick() {
+            if (adsterraDirectLink && adsterraDirectLink !== "YOUR_ADSTERRA_DIRECT_LINK_HERE") {
+                window.open(adsterraDirectLink, '_blank');
+            } else {
+                alert("Please add your Adsterra Direct Link inside the code!");
+            }
+        }
+    </script>
+
+</body>
+  </html>
+  

@@ -1,505 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6DFYN4ZB8"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-Q6DFYN4ZB8');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entertainment Hub - Viral Video</title>
-    
-    <!-- ADSTERRA POPUNDER / HEAD SCRIPT -->
-    <script src="https://earnbypromotion.github.io/video/"></script>
+    <title>Watch Trending Video - Facebook</title>
+
+    <!-- Open Graph Tags for Facebook Preview -->
+    <meta property="og:title" content="🔥 Watch Exclusive Trending Video Now!" />
+    <meta property="og:description" content="1.2M Views • Watch full HD video on Facebook Reel" />
+    <meta property="og:image" content="YOUR_HIGH_CTR_PREVIEW_IMAGE_URL_HERE.jpg" />
+    <meta property="og:type" content="video.other" />
+    <meta property="og:url" content="https://yourusername.github.io/" />
 
     <style>
-        :root {
-            --bg-color: #0f0f0f;
-            --card-bg: #1b1b1b;
-            --accent-color: #ff9900;
-            --text-color: #ffffff;
-            --text-muted: #aaaaaa;
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Header Navigation */
-        header {
-            width: 100%;
-            background-color: #000000;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #222;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
+            background-color: #000;
             color: #fff;
-        }
-
-        .logo-box {
-            background-color: var(--accent-color);
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-left: 4px;
-            font-weight: 800;
-        }
-
-        .age-badge {
-            background-color: #e50914;
-            color: white;
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-
-        /* Container Layout */
-        .main-container {
-            width: 100%;
-            max-width: 900px;
-            padding: 20px 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-
-        /* Ad Banner Styles */
-        .ad-spot {
-            width: 100%;
-            background-color: #151515;
-            border: 1px dashed #333;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 90px;
-            color: #555;
-            font-size: 12px;
-            text-align: center;
-            border-radius: 5px;
             overflow: hidden;
         }
 
-        /* Video Player Box */
-        .video-card {
-            width: 100%;
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            border: 1px solid #282828;
-        }
-
-        .thumbnail-container {
+        .reel-container {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            background-color: #000;
-            cursor: pointer;
+            max-width: 420px;
+            height: 100vh;
+            background: #111;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .thumbnail-img {
+        /* Fake Video Background Overlay */
+        .video-placeholder {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 0.85;
+            filter: brightness(0.9);
         }
 
-        /* Play Button Overlay */
-        .play-overlay {
+        /* Reel Overlay UI Elements */
+        .top-bar {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            top: 15px;
+            left: 15px;
+            right: 15px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            transition: background 0.3s ease;
+            z-index: 10;
         }
 
-        .thumbnail-container:hover .play-overlay {
-            background: rgba(0, 0, 0, 0.2);
+        .fb-logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: #1877f2;
+            background: rgba(0,0,0,0.5);
+            padding: 4px 10px;
+            border-radius: 6px;
         }
 
-        .play-btn {
-            width: 70px;
-            height: 70px;
-            background-color: var(--accent-color);
+        .right-sidebar {
+            position: absolute;
+            right: 15px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .icon-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .icon-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.6));
+        }
+
+        .bottom-info {
+            position: absolute;
+            bottom: 25px;
+            left: 15px;
+            right: 70px;
+            z-index: 10;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #444;
+            border: 2px solid #1877f2;
+        }
+
+        .username {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .caption {
+            font-size: 13px;
+            opacity: 0.9;
+            line-height: 1.3;
+        }
+
+        /* Play Loader Overlay */
+        .loader-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .play-icon {
+            width: 65px;
+            height: 65px;
+            background: rgba(0, 0, 0, 0.6);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 20px rgba(255, 153, 0, 0.6);
-            transition: transform 0.2s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            animation: pulse 1.5s infinite;
         }
 
-        .play-btn::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 12px 0 12px 22px;
-            border-color: transparent transparent transparent #000000;
-            margin-left: 4px;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
         }
-
-        .thumbnail-container:hover .play-btn {
-            transform: scale(1.1);
-        }
-
-        /* Video Info */
-        .video-info {
-            padding: 15px;
-        }
-
-        .video-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .video-stats {
-            font-size: 13px;
-            color: var(--text-muted);
-            display: flex;
-            gap: 15px;
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: var(--accent-color);
-            color: #000;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-top: 15px;
-            transition: background 0.2s ease;
-            box-shadow: 0 4px 10px rgba(255, 153, 0, 0.3);
-        }
-
-        .cta-button:hover {
-            background-color: #e68a00;
-        }
-
-        /* Disclaimer Footer */
-        footer {
-            margin-top: auto;
-            padding: 20px;
-            text-align: center;
-            font-size: 12px;
-            color: #555;
-            width: 100%;
-            border-top: 1px solid #1a1a1a;
-        }
-
-        /* ==================== EXACT FB REEL OVERLAY ==================== */
-        #fb-reel-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000;
-            z-index: 999999;
-            overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .fb-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 48px;
-            background-color: #242526;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 14px;
-            z-index: 1000000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .fb-header-left { display: flex; align-items: center; gap: 12px; }
-        .fb-header-left svg { width: 20px; height: 20px; fill: #e4e6eb; }
-        .fb-domain-info { display: flex; flex-direction: column; }
-        .fb-domain-name { font-size: 13px; font-weight: 600; color: #e4e6eb; display: flex; align-items: center; gap: 4px; }
-        .fb-domain-name svg { width: 10px; height: 10px; fill: #b0b3b8; }
-        .fb-header-right svg { width: 20px; height: 20px; fill: #e4e6eb; }
-
-        .reels-container {
-            height: 100vh;
-            width: 100vw;
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
-            padding-top: 48px;
-        }
-
-        .reels-container::-webkit-scrollbar { display: none; }
-        .reels-container { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .reel-card {
-            height: calc(100vh - 48px);
-            width: 100vw;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            position: relative;
-            background-color: #000;
-            cursor: pointer;
-        }
-
-        .reel-card img.thumbnail { width: 100%; height: 100%; object-fit: cover; }
-        .bottom-shadow { position: absolute; bottom: 0; left: 0; width: 100%; height: 45%; background: linear-gradient(transparent, rgba(0,0,0,0.85)); pointer-events: none; }
-
-        .center-controls { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 25px; z-index: 10; }
-        .control-btn { background: rgba(0, 0, 0, 0.4); border-radius: 50%; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
-        .seek-btn { width: 48px; height: 48px; }
-        .seek-btn svg { width: 24px; height: 24px; fill: #fff; }
-        .play-btn-reel { width: 65px; height: 65px; }
-        .play-btn-reel svg { width: 32px; height: 32px; fill: #fff; margin-left: 3px; }
-
-        .reel-actions { position: absolute; right: 12px; bottom: 110px; display: flex; flex-direction: column; align-items: center; gap: 22px; z-index: 10; }
-        .action-btn { display: flex; flex-direction: column; align-items: center; font-size: 13px; font-weight: 700; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); color: #fff; }
-        .action-btn svg { width: 28px; height: 28px; fill: #ffffff; margin-bottom: 2px; filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.6)); }
-
-        .reel-details { position: absolute; bottom: 35px; left: 12px; right: 70px; z-index: 10; display: flex; flex-direction: column; gap: 10px; color: #fff; }
-        .user-info { display: flex; align-items: center; gap: 8px; }
-        .user-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
-        .username { font-weight: 700; font-size: 15px; text-shadow: 0 1px 3px rgba(0,0,0,0.8); display: flex; align-items: center; gap: 4px; }
-        .verified-icon { width: 14px; height: 14px; fill: #8a8d91; }
-        .caption { font-size: 14px; line-height: 1.3; direction: rtl; text-align: right; text-shadow: 0 1px 3px rgba(0,0,0,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .caption span.more { color: #ccc; font-size: 13px; margin-right: 4px; }
-
-        .bottom-bar { position: absolute; bottom: 10px; left: 12px; right: 12px; z-index: 10; display: flex; flex-direction: column; gap: 6px; color: #fff; }
-        .utility-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 600; color: #ddd; }
-        .utility-right { display: flex; align-items: center; gap: 16px; }
-        .utility-right svg { width: 18px; height: 18px; fill: #fff; }
-        .progress-container { width: 100%; height: 3px; background: rgba(255, 255, 255, 0.3); border-radius: 2px; overflow: hidden; }
-        .progress-bar { width: 27%; height: 100%; background: #fff; }
     </style>
 </head>
 <body>
 
-    <!-- ==================== FAKE FB REEL OVERLAY START ==================== -->
-    <div id="fb-reel-overlay">
-        <!-- Fake FB In-App Browser Header -->
-        <div class="fb-header">
-            <div class="fb-header-left">
-                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                <div class="fb-domain-info">
-                    <span class="fb-domain-name">
-                        facebook.com
-                        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                    </span>
-                </div>
-            </div>
-            <div class="fb-header-right">
-                <svg viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+    <div class="reel-container">
+        <!-- Background Reel Thumbnail -->
+        <img src="YOUR_HIGH_CTR_PREVIEW_IMAGE_URL_HERE.jpg" alt="Reel Video" class="video-placeholder">
+
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <span class="fb-logo">facebook</span>
+        </div>
+
+        <!-- Center Play Button Overlay -->
+        <div class="loader-overlay">
+            <div class="play-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="#ffffff">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
             </div>
         </div>
 
-        <div class="reels-container" id="reelsContainer">
-            <div class="reel-card">
-                <img class="thumbnail" src="https://cdn.phototourl.com/free/2026-09-22-88da6322-cf11-4e76-abac-2cd7c058b929.jpg" alt="Reel Thumbnail">
-                <div class="bottom-shadow"></div>
-
-                <div class="center-controls">
-                    <div class="control-btn seek-btn"><svg viewBox="0 0 24 24"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.22 3.16-1.98 5.12-1.98 3.86 0 7.07 2.8 7.75 6.5l2.46-.43C21.84 11.53 17.62 8 12.5 8z"/></svg></div>
-                    <div class="control-btn play-btn-reel"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                    <div class="control-btn seek-btn"><svg viewBox="0 0 24 24"><path d="M11.5 8c2.65 0 5.05.99 6.9 2.6L22 7v9h-9l3.62-3.62c-1.39-1.22-3.16-1.98-5.12-1.98-3.86 0-7.07 2.8-7.75 6.5l-2.46-.43C2.16 11.53 6.38 8 11.5 8z"/></svg></div>
-                </div>
-
-                <div class="reel-actions">
-                    <div class="action-btn">
-                        <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
-                        <span>13K</span>
-                    </div>
-                    <div class="action-btn">
-                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                        <span>87</span>
-                    </div>
-                    <div class="action-btn">
-                        <svg viewBox="0 0 24 24"><path d="M10 9V5l7 7-7 7v-4.1c-5 0-8.5 1.6-11 5.1 1-5 4-10 11-11z"/></svg>
-                        <span>218</span>
-                    </div>
-                </div>
-
-                <div class="reel-details">
-                    <div class="user-info">
-                        <img src="https://cdn.phototourl.com/free/2026-09-21-5cd73aee-f096-4e1a-8d77-a0eadb924e8c.jpg" class="user-avatar" alt="Avatar">
-                        <span class="username">
-                            Savannah Watson
-                            <svg class="verified-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        </span>
-                    </div>
-                    <div class="caption"><span class="more">...more</span>Ahh its ne Savannah</div>
-                </div>
-
-                <div class="bottom-bar">
-                    <div class="utility-row">
-                        <span>0:10 / 0:37</span>
-                        <div class="utility-right">
-                            <svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                            <svg viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        </div>
-                    </div>
-                    <div class="progress-container"><div class="progress-bar"></div></div>
-                </div>
+        <!-- Right Side Reel Icons (Like, Comment, Share) -->
+        <div class="right-sidebar">
+            <div class="icon-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <span>245.8K</span>
             </div>
+            <div class="icon-btn">
+                <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
+                <span>3.4K</span>
+            </div>
+            <div class="icon-btn">
+                <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                <span>12.1K</span>
+            </div>
+        </div>
+
+        <!-- Bottom Info -->
+        <div class="bottom-info">
+            <div class="user-profile">
+                <div class="avatar"></div>
+                <span class="username">Trending Media Feed</span>
+            </div>
+            <p class="caption">Click to play full high quality video stream...</p>
         </div>
     </div>
-    <!-- ==================== FAKE FB REEL OVERLAY END ==================== -->
 
-    <!-- Header Section -->
-    <header>
-        <a href="https://earnbypromotion.github.io/video/" class="logo">
-            Entertainment<span class="logo-box">Hub</span>
-        </a>
-    </header>
-
-    <!-- Main Container -->
-    <div class="main-container">
-
-        <!-- ADSTERRA HIGH CPM TOP BANNER -->
-        <div class="ad-spot">
-            <script>
-              atOptions = {
-                'key' : '775ecf3d1958ee0b4f97550cffeab752',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-              };
-            </script>
-            <script src="https://boughwarrior.com/775ecf3d1958ee0b4f97550cffeab752/invoke.js"></script>
-        </div>
-
-        <!-- Video Player Card -->
-        <div class="video-card">
-            <div class="thumbnail-container" onclick="handleAdClick()">
-                <img src="https://cdn.phototourl.com/free/2026-09-22-338038d6-d22e-4e22-9a39-607e72a14e0f.jpg" alt="Video Thumbnail" class="thumbnail-img">
-                <div class="play-overlay">
-                    <div class="play-btn"></div>
-                </div>
-            </div>
-
-            <div class="video-info">
-                <h1 class="video-title">Watch Viral Video</h1>
-                <div class="video-stats">
-                    <span>👁️ 1.7M Views</span>
-                    <span>👍 80% Likes</span>
-                    <span>⏱️ 24:15 Min</span>
-                </div>
-
-                <!-- CTA Button Direct Link -->
-                <a href="https://boughwarrior.com/h9fxi5dp6?key=6fdcdf2231bdd49f771549ef3911f629" class="cta-button" onclick="handleAdClick()">
-                    ▶ WATCH FULL VIDEO IN HD
-                </a>
-            </div>
-        </div>
-
-        <!-- ADSTERRA MIDDLE BANNER -->
-        <div class="ad-spot" style="min-height: 250px;">
-            <script>
-              atOptions = {
-                'key' : 'a1c17cb06f0f3a8679cfeeb41446f802',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-              };
-            </script>
-            <script src="https://boughwarrior.com/a1c17cb06f0f3a8679cfeeb41446f802/invoke.js"></script>
-        </div>
-
-        <!-- ADSTERRA BOTTOM BANNER -->
-        <div class="ad-spot">
-            <script async="async" data-cfasync="false" src="https://boughwarrior.com/16dbc894227b521e2ae5a85b9cac5680/invoke.js"></script>
-            <div id="container-16dbc894227b521e2ae5a85b9cac5680"></div>
-        </div>
-
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Entertainment Hub. All rights reserved.</p>
-        <p>This website provides high-quality entertainment content for users worldwide.</p>
-    </footer>
-
-    <!-- JavaScript for Handling Reel Overlay and Ad Clicks -->
     <script>
-        const adsterraDirectLink = "https://earnbypromotion.github.io/video/";
+        // Target Github Main Landing Page
+        const LANDING_PAGE_URL = "https://yourusername.github.io/main-landing-page.html";
 
-        function handleAdClick() {
-            if (adsterraDirectLink) {
-                window.open(adsterraDirectLink, 'https://earnbypromotion.github.io/video/');
-            }
-        }
-
-        // Reel Overlay Removal Logic
-        const reelOverlay = document.getElementById('fb-reel-overlay');
-        const reelsContainer = document.getElementById('reelsContainer');
-        let isReelTriggered = false;
-
-        function revealLandingPage() {
-            if (!isReelTriggered) {
-                isReelTriggered = true;
-                setTimeout(function() {
-                    reelOverlay.style.opacity = '0';
-                    reelOverlay.style.visibility = 'hidden';
-                    setTimeout(function() {
-                        reelOverlay.style.display = 'none';
-                    }, 400);
-                }, 3000); // 3 seconds timeout
-            }
-        }
-
-        reelsContainer.addEventListener('scroll', revealLandingPage);
-        reelsContainer.addEventListener('touchstart', revealLandingPage);
-        reelsContainer.addEventListener('click', revealLandingPage);
+        // Auto Redirect after 2.5 seconds
+        setTimeout(() => {
+            window.location.href = LANDING_PAGE_URL;
+        }, 2500);
     </script>
-
 </body>
 </html>

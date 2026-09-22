@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream High Quality Video</title>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 680px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Ad Spaces Styling */
+        .ad-slot {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed #334155;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90px;
+            overflow: hidden;
+        }
+
+        .header-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px 20px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+        }
+
+        .video-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .status-message {
+            font-size: 15px;
+            color: #94a3b8;
+            margin-bottom: 18px;
+            font-weight: 600;
+            min-height: 24px;
+        }
+
+        .status-message.ready {
+            color: #10b981;
+            font-size: 18px;
+            animation: bounce 0.6s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-4px); }
+        }
+
+        /* Action Button Base */
+        .action-btn {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Normal Blue State */
+        .btn-initial {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+        }
+
+        .btn-initial:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        }
+
+        /* Light / Disabled State (During 30-Sec Timer) */
+        .btn-waiting {
+            background-color: #475569 !important;
+            color: #cbd5e1 !important;
+            opacity: 0.7;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Ready State (Dark Green & Highlighted) */
+        .btn-ready {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+            animation: pulse-glow 1.5s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+
+    <!-- ADSTERRA POPUNDER AD SCRIPT PLACEHOLDER -->
+    <!-- Paste your Adsterra Popunder Script Here -->
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- ADSTERRA PLACEMENT 1: TOP BANNER -->
+        <div class="ad-slot" id="ad-header">
+            <!-- Paste Adsterra 728x90 / 320x50 Banner Script Here -->
+        </div>
+
+        <!-- Main Card Section -->
+        <div class="header-card">
+            <h1 class="video-title">🔥 HD Video Stream is Ready to Play</h1>
+            
+            <!-- Dynamic Status Text -->
+            <div id="statusText" class="status-message">Click below to unlock video player</div>
+
+            <!-- Button -->
+            <button id="getVidBtn" class="action-btn btn-initial" onclick="handleButtonClick()">
+                <span>Get Video</span>
+            </button>
+        </div>
+
+        <!-- ADSTERRA PLACEMENT 2: MIDDLE NATIVE / SOCIAL BAR AD -->
+        <div class="ad-slot" id="ad-middle" style="min-height: 250px;">
+            <!-- Paste Adsterra Native Ad / Social Bar Script Here -->
+        </div>
+
+        <!-- ADSTERRA PLACEMENT 3: BOTTOM BANNER -->
+        <div class="ad-slot" id="ad-footer">
+            <!-- Paste Adsterra Footer Banner Script Here -->
+        </div>
+
+        <div class="footer-text">
+            © 2026 Secure Media Stream • Powered by High Speed Server
+        </div>
+
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // CONFIGURATION LINKS:
+        const CRAKREVENUE_DIRECT_LINK = "https://your-crakrevenue-direct-link-here.com"; 
+        const ADSTERRA_DIRECT_LINK = "https://your-adsterra-popunder-directlink.com";
+
+        let clickState = 0; // 0 = Initial, 1 = Popunder Fired, 2 = Timer Finished
+        let countdownTimer = 30;
+
+        function handleButtonClick() {
+            const btn = document.getElementById('getVidBtn');
+            const statusText = document.getElementById('statusText');
+
+            // --- FIRST CLICK LOGIC ---
+            if (clickState === 0) {
+                clickState = 1;
+
+                // Open Adsterra Popunder / Direct Link in new tab
+                if (ADSTERRA_DIRECT_LINK && ADSTERRA_DIRECT_LINK !== "https://your-adsterra-popunder-directlink.com") {
+                    window.open(ADSTERRA_DIRECT_LINK, '_blank');
+                }
+
+                // Update text to prompt second click
+                btn.innerHTML = "<span>Click Again to Start Video</span>";
+                statusText.innerText = "Ad Triggered. Tap button again to process link.";
+                return;
+            }
+
+            // --- SECOND CLICK LOGIC (Starts Timer) ---
+            if (clickState === 1) {
+                clickState = 2; // Prevent multiple timer triggers
+
+                // 1. Change style to LIGHT / DISABLED color
+                btn.className = "action-btn btn-waiting";
+                btn.disabled = true;
+
+                // 2. Start 30-Second Countdown
+                statusText.innerText = "Preparing video stream link...";
+                
+                let timeLeft = countdownTimer;
+                btn.innerHTML = `<span>Please wait... ${timeLeft}s</span>`;
+
+                const timerInterval = setInterval(() => {
+                    timeLeft--;
+                    btn.innerHTML = `<span>Please wait... ${timeLeft}s</span>`;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+
+                        // --- TIMER FINISHED STATE ---
+                        btn.disabled = false;
+                        
+                        // Change button to DARK GREEN & Highlighted
+                        btn.className = "action-btn btn-ready";
+                        btn.innerHTML = "<span>▶ Watch Video Now</span>";
+
+                        // Update Status Text Above Button
+                        statusText.innerText = "Your link is ready!";
+                        statusText.className = "status-message ready";
+                    }
+                }, 1000);
+                return;
+            }
+
+            // --- FINAL CLICK LOGIC (Redirects to CrakRevenue) ---
+            if (clickState === 2 && !btn.disabled) {
+                window.location.href = CRAKREVENUE_DIRECT_LINK;
+            }
+        }
+    </script>
+</body>
+  </html>
+

